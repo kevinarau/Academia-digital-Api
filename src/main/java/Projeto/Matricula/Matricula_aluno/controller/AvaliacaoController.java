@@ -25,7 +25,7 @@ public class AvaliacaoController {
 
     }
 
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/buscarAvaliacao/{id}")
     public AvaliacaoFisica buscarAvaliacao(@PathVariable Long id) {
         return avaliacaoFisicaService.BuscarAvaliacao(id);
     }
@@ -40,11 +40,6 @@ public class AvaliacaoController {
         return ResponseEntity.ok(formularioAtualizar);
      }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleta(@PathVariable Long id) {
-        avaliacaoFisicaService.delete(id);
-        return ResponseEntity.ok(id);
-    }
 
 
 }
