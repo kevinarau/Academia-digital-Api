@@ -1,5 +1,6 @@
 package Projeto.Matricula.Matricula_aluno.controller;
 
+import Projeto.Matricula.Matricula_aluno.form.AlunoAtualizarForm;
 import Projeto.Matricula.Matricula_aluno.form.AlunoForm;
 import Projeto.Matricula.Matricula_aluno.model.Aluno;
 import Projeto.Matricula.Matricula_aluno.model.AvaliacaoFisica;
@@ -21,8 +22,7 @@ public class AlunoController {
 
 
     @GetMapping
-    public List<Aluno> ListaAluno(@RequestParam(value = "dataDeNascimento", required = false)
-                                      String DataDeNascimento) {
+    public List<Aluno> ListaAluno(@RequestParam(value = "dataDeNascimento", required = false) String DataDeNascimento) {
         return alunoService.ListaAluno(DataDeNascimento);
     }
 
@@ -32,9 +32,27 @@ public class AlunoController {
         return alunoService.CriarAluno(form);
     }
 
-    @GetMapping("/avaliacao_list/{id}")
+    @GetMapping("/list/{id}")
     public List<AvaliacaoFisica> ListaAvaliacao(@PathVariable Long id) {
         return alunoService.ListaAvalicao(id);
+    }
+
+    @GetMapping("/{id}")
+    public Aluno buscarAluno(@PathVariable Long id ){
+        return alunoService.BuscarAluno(id);
+    }
+
+    @GetMapping("/buscar/{id}")
+    public List<AvaliacaoFisica> buscarAvaliacao(@PathVariable Long id){
+        return  alunoService.BuscarAvaliacaoFisicaId(id);
+
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AlunoAtualizarForm> AtualizarFormulario(@PathVariable Long id , @RequestBody AlunoAtualizarForm formularioAtualizar){
+            alunoService.AtualizarFormulario(id, formularioAtualizar);
+          return  ResponseEntity.ok(formularioAtualizar);
     }
 
     @DeleteMapping("/{id}")

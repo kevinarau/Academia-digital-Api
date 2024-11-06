@@ -2,6 +2,7 @@ package Projeto.Matricula.Matricula_aluno.service;
 
 import Projeto.Matricula.Matricula_aluno.form.MatriculaForm;
 import Projeto.Matricula.Matricula_aluno.model.Aluno;
+import Projeto.Matricula.Matricula_aluno.model.AvaliacaoFisica;
 import Projeto.Matricula.Matricula_aluno.model.Matricula;
 import Projeto.Matricula.Matricula_aluno.repository.AlunoRepository;
 import Projeto.Matricula.Matricula_aluno.repository.MatriculaRespository;
@@ -29,7 +30,8 @@ public class MatriculaService  {
     }
 
     public Matricula Buscar(Long id) {
-        return null;
+        return  matriculaRespository.findById(id).get();
+
     }
 
 
@@ -42,6 +44,7 @@ public class MatriculaService  {
     }
 
     public void deletar(Long id) {
+        matriculaRespository.deleteById(id);
 
     }
 }

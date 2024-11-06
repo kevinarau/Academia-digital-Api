@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AlunoService {
 
@@ -48,8 +50,19 @@ public class AlunoService {
         return alunoRepository.findBydataDeNascimento(localDate);
     }
 
-    public Aluno AtualizarFormulario(Long id, AlunoAtualizarForm formularioAtualizar) {
-        return null;
+
+
+    public void AtualizarFormulario(Long id, AlunoAtualizarForm formularioAtualizar) {
+        Optional<Aluno> alunos = alunoRepository.findById(id);
+        if (alunos.isPresent() ){
+            Aluno aluno = alunos.get();
+            aluno.setNome(formularioAtualizar.getNome());
+            aluno.setBairro(formularioAtualizar.getBairro());
+            aluno.setDataDeNascimento(formularioAtualizar.getDataDeNascimento());
+
+             alunoRepository.save(aluno);
+        }
+
     }
 
 
@@ -60,7 +73,8 @@ public class AlunoService {
 
 
     public List<AvaliacaoFisica> BuscarAvaliacaoFisicaId(Long id) {
-        return List.of();
+        Aluno aluno = alunoRepository.findById(id).get();
+        return aluno.getAvaliacaoFisica();
     }
 
     public List<AvaliacaoFisica> ListaAvalicao(Long id) {

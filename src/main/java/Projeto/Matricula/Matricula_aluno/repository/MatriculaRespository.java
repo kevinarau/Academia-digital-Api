@@ -12,5 +12,5 @@ import java.util.List;
 public interface MatriculaRespository extends JpaRepository<Matricula,Long> {
 
 
-     // List<Matricula> findByAlunoBairro(String bairro);
+     List<Matricula> findByAlunoBairro(String bairro);
 }

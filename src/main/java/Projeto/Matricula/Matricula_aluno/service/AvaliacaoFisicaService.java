@@ -34,19 +34,28 @@ public class AvaliacaoFisicaService {
         }
 
 
+        public AvaliacaoFisica BuscarAvaliacao(Long id) {
+        return avaliacaoFisica.findById(id).get();
 
-
-    public AvaliacaoFisica BuscarAvaliacao(Long id) {
-        return null;
     }
 
     public List<AvaliacaoFisica> ListaAvaliacaoFisica() {
-        return List.of();
+        return avaliacaoFisica.findAll();
     }
 
-    public AvaliacaoFisica AtualizarAvaliacao(Long id, AvaliacaoAtualizarForm formularioAtualizar) {
-        return null;
-    }
+    public void AtualizarAvaliacao(Long id, AvaliacaoAtualizarForm formularioAtualizar) {
+        Optional<AvaliacaoFisica> avaliacao = avaliacaoFisica.findById(id);
+     if (avaliacao.isPresent()) {
+         AvaliacaoFisica avaliacaoFisica1= avaliacao.get();
+
+         avaliacaoFisica1.setAluno(avaliacaoFisica1.getAluno());
+         avaliacaoFisica1.setPeso(formularioAtualizar.getPeso());
+         avaliacaoFisica1.setAltura(formularioAtualizar.getAltura());
+
+          avaliacaoFisica.save(avaliacaoFisica1);
+     }
+
+     }
 
     public void delete(Long id) {
         avaliacaoFisica.deleteById(id);

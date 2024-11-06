@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/avaliacao")
 public class AvaliacaoController {
@@ -22,6 +24,21 @@ public class AvaliacaoController {
         return avaliacaoFisicaService.CriarAvaliacao(form);
 
     }
+
+    @GetMapping("/buscar/{id}")
+    public AvaliacaoFisica buscarAvaliacao(@PathVariable Long id) {
+        return avaliacaoFisicaService.BuscarAvaliacao(id);
+    }
+
+    @GetMapping
+    public List<AvaliacaoFisica> ListaAvaliacaoFisica() {
+        return avaliacaoFisicaService.ListaAvaliacaoFisica();
+    }
+     @PutMapping("/{id}")
+    public ResponseEntity<AvaliacaoAtualizarForm>  AtualizarAvaliacao(@PathVariable Long id, @RequestBody AvaliacaoAtualizarForm formularioAtualizar){
+        avaliacaoFisicaService.AtualizarAvaliacao(id,formularioAtualizar);
+        return ResponseEntity.ok(formularioAtualizar);
+     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleta(@PathVariable Long id) {
