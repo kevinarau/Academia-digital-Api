@@ -3,6 +3,7 @@ package Projeto.Matricula.Matricula_aluno.service;
 
 import Projeto.Matricula.Matricula_aluno.form.AlunoAtualizarForm;
 import Projeto.Matricula.Matricula_aluno.form.AlunoForm;
+import Projeto.Matricula.Matricula_aluno.infra.util.JavaTimeUtils;
 import Projeto.Matricula.Matricula_aluno.model.Aluno;
 import Projeto.Matricula.Matricula_aluno.model.AvaliacaoFisica;
 import Projeto.Matricula.Matricula_aluno.repository.AlunoRepository;
@@ -10,6 +11,7 @@ import Projeto.Matricula.Matricula_aluno.repository.AvaliacaoFisicaRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class AlunoService {
@@ -28,7 +30,7 @@ public class AlunoService {
             aluno.setNome(alunoForm.getNome());
             aluno.setCpf(alunoForm.getCpf());
             aluno.setBairro(alunoForm.getBairro());
-            aluno.setDataNascimento(alunoForm.getDataDeNascimento());
+            aluno.setDataDeNascimento(alunoForm.getDataDeNascimento());
 
         return alunoRepository.save(aluno);
     }
@@ -38,8 +40,12 @@ public class AlunoService {
         return alunoRepository.findById(id).get();
     }
 
-    public List<Aluno> ListaAluno() {
-        return alunoRepository.findAll();
+    public List<Aluno> ListaAluno(String DataDeNascimento) {
+        if (DataDeNascimento ==  null){
+            return alunoRepository.findAll();
+        }
+        LocalDate localDate = LocalDate.parse(DataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
+        return alunoRepository.findBydataDeNascimento(localDate);
     }
 
     public Aluno AtualizarFormulario(Long id, AlunoAtualizarForm formularioAtualizar) {

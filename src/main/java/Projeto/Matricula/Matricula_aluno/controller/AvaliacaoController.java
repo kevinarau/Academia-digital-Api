@@ -6,10 +6,11 @@ import Projeto.Matricula.Matricula_aluno.model.AvaliacaoFisica;
 import Projeto.Matricula.Matricula_aluno.repository.AvaliacaoFisicaRespository;
 import Projeto.Matricula.Matricula_aluno.service.AvaliacaoFisicaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Avaliacao")
+@RequestMapping("/avaliacao")
 public class AvaliacaoController {
 
     @Autowired
@@ -17,9 +18,15 @@ public class AvaliacaoController {
 
 
     @PostMapping
-    public AvaliacaoFisica CriarAvaliacao(@RequestBody AvaliacaoFisicaForm form){
+    public AvaliacaoFisica CriarAvaliacao(@RequestBody AvaliacaoFisicaForm form) {
         return avaliacaoFisicaService.CriarAvaliacao(form);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleta(@PathVariable Long id) {
+        avaliacaoFisicaService.delete(id);
+        return ResponseEntity.ok(id);
     }
 
 

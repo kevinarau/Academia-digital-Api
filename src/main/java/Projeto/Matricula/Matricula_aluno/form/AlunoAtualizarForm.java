@@ -7,5 +7,5 @@ public class AlunoAtualizarForm {
 
     private String bairro;
 
-    private LocalDate dataDeNascimento;
+    private LocalDate DataDeNascimento = LocalDate.now();
 }

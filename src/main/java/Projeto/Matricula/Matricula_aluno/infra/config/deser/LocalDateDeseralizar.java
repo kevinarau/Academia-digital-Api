@@ -1,12 +1,13 @@
-package Projeto.Matricula.Matricula_aluno.infra.deser;
-
+package Projeto.Matricula.Matricula_aluno.infra.config.deser;
 import Projeto.Matricula.Matricula_aluno.infra.util.JavaTimeUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
+
 import java.io.IOException;
 import java.time.LocalDate;
+
 
 public class LocalDateDeseralizar extends StdDeserializer<LocalDate> {
 

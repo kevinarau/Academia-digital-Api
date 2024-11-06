@@ -49,6 +49,7 @@ public class AvaliacaoFisicaService {
     }
 
     public void delete(Long id) {
+        avaliacaoFisica.deleteById(id);
 
     }
 }

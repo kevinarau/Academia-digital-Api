@@ -1,4 +1,4 @@
-package Projeto.Matricula.Matricula_aluno.infra.deser;
+package Projeto.Matricula.Matricula_aluno.infra.config.deser;
 
 import Projeto.Matricula.Matricula_aluno.infra.util.JavaTimeUtils;
 import com.fasterxml.jackson.core.JsonParser;

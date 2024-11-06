@@ -19,5 +19,6 @@ public class Matricula {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
+
     private LocalDateTime dataMatricula = LocalDateTime.now();
 }

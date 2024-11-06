@@ -7,6 +7,7 @@ import Projeto.Matricula.Matricula_aluno.service.AlunoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,25 +16,32 @@ import java.util.List;
 @RequestMapping("/alunos")
 public class AlunoController {
 
-  @Autowired
-  private AlunoService alunoService;
+    @Autowired
+    private AlunoService alunoService;
 
 
-  @GetMapping
-  public List<Aluno> ListaAluno() {
-    return alunoService.ListaAluno();
-  }
+    @GetMapping
+    public List<Aluno> ListaAluno(@RequestParam(value = "dataDeNascimento", required = false)
+                                      String DataDeNascimento) {
+        return alunoService.ListaAluno(DataDeNascimento);
+    }
 
 
-  @PostMapping
-  public Aluno CriarAluno(@RequestBody AlunoForm form) {
-    return alunoService.CriarAluno(form);
-  }
+    @PostMapping
+    public Aluno CriarAluno(@RequestBody AlunoForm form) {
+        return alunoService.CriarAluno(form);
+    }
 
-  @GetMapping("/avaliacao_list/{id}")
-  public List<AvaliacaoFisica> ListaAvaliacao(@PathVariable Long id){
-    return alunoService.ListaAvalicao(id);
-  }
+    @GetMapping("/avaliacao_list/{id}")
+    public List<AvaliacaoFisica> ListaAvaliacao(@PathVariable Long id) {
+        return alunoService.ListaAvalicao(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> deleta(@PathVariable Long id) {
+        alunoService.delete(id);
+        return ResponseEntity.ok(id);
+    }
 
 }
 
