@@ -34,12 +34,16 @@ public class AvaliacaoController {
     public List<AvaliacaoFisica> ListaAvaliacaoFisica() {
         return avaliacaoFisicaService.ListaAvaliacaoFisica();
     }
+
      @PutMapping("/{id}")
     public ResponseEntity<AvaliacaoAtualizarForm>  AtualizarAvaliacao(@PathVariable Long id, @RequestBody AvaliacaoAtualizarForm formularioAtualizar){
         avaliacaoFisicaService.AtualizarAvaliacao(id,formularioAtualizar);
         return ResponseEntity.ok(formularioAtualizar);
      }
-
-
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Long> delete(@PathVariable Long id){
+        avaliacaoFisicaService.delete(id);
+        return ResponseEntity.ok(id);
+  }
 
 }

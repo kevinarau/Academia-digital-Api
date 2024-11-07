@@ -58,4 +58,9 @@ public class AvaliacaoFisicaService {
      }
 
 
+    public void delete(Long id) {
+        alunoRepository.deleteById(id);
+
+    }
+
 }

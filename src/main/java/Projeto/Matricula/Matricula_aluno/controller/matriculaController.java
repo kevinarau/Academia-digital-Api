@@ -1,10 +1,8 @@
 package Projeto.Matricula.Matricula_aluno.controller;
 
 import Projeto.Matricula.Matricula_aluno.form.MatriculaForm;
-import Projeto.Matricula.Matricula_aluno.model.AvaliacaoFisica;
 import Projeto.Matricula.Matricula_aluno.model.Matricula;
 import Projeto.Matricula.Matricula_aluno.service.MatriculaService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +34,13 @@ public class matriculaController {
         return Service.ListaMatricula(bairro);
     }
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> deleta(@PathVariable Long id) {
-        Service.deletar(id);
+    public ResponseEntity<Long> delete(@PathVariable Long id){
+        Service.delete(id);
         return ResponseEntity.ok(id);
+    }
+
 
     }
 
-}
